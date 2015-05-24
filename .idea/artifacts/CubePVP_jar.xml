@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CubePVP:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CubePVP_jar</output-path>
+    <root id="archive" name="CubePVP.jar">
+      <element id="module-output" name="CubePVP" />
+    </root>
+  </artifact>
+</component>

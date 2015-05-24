@@ -1,0 +1,5 @@
+name: CubePVP
+main: com.cubemc.cubepvp.CubePVP
+version: 1.0
+author: WilliamTiger
+depend: [CubeAPI]
