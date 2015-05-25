@@ -4,6 +4,7 @@ package com.cubemc.cubepvp.Executors;
 import com.cubemc.api.CubeAPI;
 import com.cubemc.api.Game.executors.StartGameExecutor;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 /**
@@ -17,15 +18,38 @@ public class StartGame implements StartGameExecutor {
 
     @Override
     public void startWarmup() {
+
+        String currentTeam = "Red";
+        for (Player p : Bukkit.getOnlinePlayers()){
+            if (currentTeam.equals("Red")){
+                CubeAPI.getGameManager().getTeamManager().joinTeam(p, CubeAPI.getGameManager().getTeamManager().getTeam("Red"));
+                currentTeam = "Blue";
+            }else{
+                CubeAPI.getGameManager().getTeamManager().joinTeam(p, CubeAPI.getGameManager().getTeamManager().getTeam("Blue"));
+                currentTeam = "Red";
+            }
+        }
+
         for (String s : CubeAPI.getGameManager().getTeamManager().getTeam("Red").getMembers()){
             Player p = Bukkit.getPlayer(s);
 
-            //Teleport players, give them kits etc.
+            p.teleport(new Location(Bukkit.getWorld(CubeAPI.getGameManager().getGame().getCurrentMap().getFolderName()), 0.5, 65, 10.5));
+        }
+        for (String s : CubeAPI.getGameManager().getTeamManager().getTeam("Blue").getMembers()){
+            Player p = Bukkit.getPlayer(s);
+
+            p.teleport(new Location(Bukkit.getWorld(CubeAPI.getGameManager().getGame().getCurrentMap().getFolderName()), 0.5, 65, -10.5));
+        }
+
+        for (Player p : Bukkit.getOnlinePlayers()){
+            p.getInventory().clear();
+            CubeAPI.getGameManager().getKitManager().getSelectedKit(p).applyKit(p);
         }
     }
 
     @Override
     public void startGame() {
-
+        CubeAPI.getGameManager().getGame().getSet().setCanPVP(true);
+        CubeAPI.getGameManager().getGame().getSet().setCanPlayersTakeDamage(true);
     }
 }

@@ -16,6 +16,7 @@ import com.cubemc.cubepvp.Kits.KnightKit;
 import com.cubemc.cubepvp.Listeners.Death;
 import com.cubemc.cubepvp.Listeners.Join;
 import com.cubemc.cubepvp.Listeners.Leave;
+import com.cubemc.cubepvp.Listeners.NoHunger;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -37,7 +38,7 @@ public class CubePVP extends JavaPlugin implements GamePlugin {
         //List all maps for the game.
         List<GameMap> maps = new ArrayList<GameMap>();
 
-        maps.add(new GameMap("Test Map", "WilliamTiger", "test_map"));
+        maps.add(new GameMap("Dark Forest", "WilliamTiger", "dark_forest"));
 
         //Initialize the game with the GameManager.
         CubeAPI.getGameManager().initializeGame(setupGame(), maps);
@@ -46,6 +47,7 @@ public class CubePVP extends JavaPlugin implements GamePlugin {
         Bukkit.getPluginManager().registerEvents(new Join(), this);
         Bukkit.getPluginManager().registerEvents(new Death(), this);
         Bukkit.getPluginManager().registerEvents(new Leave(), this);
+        Bukkit.getPluginManager().registerEvents(new NoHunger(), this);
     }
 
     @Override
