@@ -35,10 +35,10 @@ public class KnightKit extends GameKit {
     @Override
     public void applyKit(Player player) {
         player.getInventory().setArmorContents(new ItemStack[]{
-                Items.create(Material.IRON_HELMET, 1, "§7Knight - §fIron Helmet", Arrays.asList("")),
-                Items.create(Material.IRON_CHESTPLATE, 1, "§7Knight - §fIron Chestplate", Arrays.asList("")),
+                Items.create(Material.IRON_BOOTS, 1, "§7Knight - §fIron Boots", Arrays.asList("")),
                 Items.create(Material.IRON_LEGGINGS, 1, "§7Knight - §fIron Leggings", Arrays.asList("")),
-                Items.create(Material.IRON_BOOTS, 1, "§7Knight - §fIron Boots", Arrays.asList(""))
+                Items.create(Material.IRON_CHESTPLATE, 1, "§7Knight - §fIron Chestplate", Arrays.asList("")),
+                Items.create(Material.IRON_HELMET, 1, "§7Knight - §fIron Helmet", Arrays.asList(""))
         });
         player.getInventory().addItem(Items.create(Material.DIAMOND_SWORD, 1, "§7Knight - §fDiamond Sword", Arrays.asList("")));
     }

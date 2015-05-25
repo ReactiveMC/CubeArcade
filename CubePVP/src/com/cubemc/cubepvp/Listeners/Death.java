@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
@@ -38,14 +39,19 @@ public class Death implements Listener {
     }
 
     @EventHandler
-    public void onEntity(EntityDamageEvent e){
+    public void onEntity(EntityDeathEvent e){
         if (!(e.getEntity() instanceof Player)){
             return;
         }
         Player p = (Player) e.getEntity();
-        Player k = (Player) p.getKiller();
 
-        Bukkit.broadcastMessage(M.reg(p.getDisplayName() + " §7was killed by " + k.getDisplayName() + "§7."));
+        if (p.getKiller() != null){
+            Bukkit.broadcastMessage(M.reg(p.getDisplayName() + " §7was killed by " + p.getKiller().getDisplayName() + "§7."));
+        }else{
+            Bukkit.broadcastMessage(M.reg(p.getDisplayName() + " §7died."));
+        }
+
+        CubeAPI.getGameManager().getTeamManager().leaveTeam(p);
 
         if (CubeAPI.getGameManager().getTeamManager().getTeam("Red").getMembers().size()==0){
             //Blue has won then.

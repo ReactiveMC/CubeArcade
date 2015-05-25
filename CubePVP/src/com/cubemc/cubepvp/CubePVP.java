@@ -64,7 +64,7 @@ public class CubePVP extends JavaPlugin implements GamePlugin {
         game.setJoinAction(JoinAction.SEND_TO_LOBBY);
         game.setKitsEnabled(true);
         game.setMaxPlayers(10);
-        game.setMinPlayers(1);
+        game.setMinPlayers(2);
 
         List<GameTeam> teams = new ArrayList<GameTeam>();
         {

@@ -33,12 +33,12 @@ public class StartGame implements StartGameExecutor {
         for (String s : CubeAPI.getGameManager().getTeamManager().getTeam("Red").getMembers()){
             Player p = Bukkit.getPlayer(s);
 
-            p.teleport(new Location(Bukkit.getWorld(CubeAPI.getGameManager().getGame().getCurrentMap().getFolderName()), 0.5, 65, 10.5));
+            p.teleport(new Location(Bukkit.getWorld(CubeAPI.getGameManager().getGame().getCurrentMap().getFolderName()), 0, 65, 10));
         }
         for (String s : CubeAPI.getGameManager().getTeamManager().getTeam("Blue").getMembers()){
             Player p = Bukkit.getPlayer(s);
 
-            p.teleport(new Location(Bukkit.getWorld(CubeAPI.getGameManager().getGame().getCurrentMap().getFolderName()), 0.5, 65, -10.5));
+            p.teleport(new Location(Bukkit.getWorld(CubeAPI.getGameManager().getGame().getCurrentMap().getFolderName()), 0, 65, -10));
         }
 
         for (Player p : Bukkit.getOnlinePlayers()){
@@ -51,5 +51,6 @@ public class StartGame implements StartGameExecutor {
     public void startGame() {
         CubeAPI.getGameManager().getGame().getSet().setCanPVP(true);
         CubeAPI.getGameManager().getGame().getSet().setCanPlayersTakeDamage(true);
+        CubeAPI.getGameManager().getGame().getSet().setCanPVE(true);
     }
 }

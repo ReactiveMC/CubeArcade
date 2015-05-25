@@ -1,6 +1,9 @@
 package com.cubemc.cubepvp.Listeners;
 
 import com.cubemc.api.CubeAPI;
+import com.cubemc.api.Game.GameState;
+import com.cubemc.api.Utils.M;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,6 +21,12 @@ public class Leave implements Listener {
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent e){
         Player p = e.getPlayer();
+
+        if (CubeAPI.getGameManager().getGame().getState() != GameState.INGAME) return;
+
+        if (CubeAPI.getGameManager().getTeamManager().hasTeam(p)==false){
+            Bukkit.broadcastMessage(M.fatal("He had no team :o"));
+        }
 
         if (CubeAPI.getGameManager().getTeamManager().getTeam(p).getName().equals("Red") || CubeAPI.getGameManager().getTeamManager().getTeam(p).getName().equals("Blue")){
 
