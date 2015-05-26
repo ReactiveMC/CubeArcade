@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CubeTargeted:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CubeTargeted_jar</output-path>
+    <root id="archive" name="CubeTargeted.jar">
+      <element id="module-output" name="CubeTargeted" />
+    </root>
+  </artifact>
+</component>

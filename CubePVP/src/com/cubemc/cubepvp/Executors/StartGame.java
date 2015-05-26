@@ -2,7 +2,7 @@ package com.cubemc.cubepvp.Executors;
 
 
 import com.cubemc.api.CubeAPI;
-import com.cubemc.api.Game.executors.StartGameExecutor;
+import com.cubemc.api.game.executors.StartGameExecutor;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;

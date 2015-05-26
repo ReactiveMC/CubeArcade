@@ -1,11 +1,11 @@
 package com.cubemc.cubepvp.Kits;
 
-import com.cubemc.api.Game.kits.GameKit;
-import com.cubemc.api.Game.kits.perks.Perk;
 import com.cubemc.api.Ranks.Rank;
 import com.cubemc.api.Shop.CurrencyType;
 import com.cubemc.api.Shop.ShopItem;
 import com.cubemc.api.Utils.Items;
+import com.cubemc.api.game.kits.GameKit;
+import com.cubemc.api.game.kits.perks.Perk;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;

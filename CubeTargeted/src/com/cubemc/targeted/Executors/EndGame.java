@@ -1,5 +1,4 @@
-package com.cubemc.cubepvp.Executors;
-
+package com.cubemc.targeted.Executors;
 
 import com.cubemc.api.game.executors.EndGameExecutor;
 
@@ -8,7 +7,7 @@ import com.cubemc.api.game.executors.EndGameExecutor;
  * All the code and any API's associated with it
  * are not to be used anywhere else without written
  * consent of William Burns. 2014.
- * 24/05/2015
+ * 26/05/2015
  */
 public class EndGame implements EndGameExecutor {
 

@@ -1,14 +1,15 @@
 package com.cubemc.cubepvp;
 
 import com.cubemc.api.CubeAPI;
-import com.cubemc.api.Game.CubeGame;
-import com.cubemc.api.Game.GamePlugin;
-import com.cubemc.api.Game.GameState;
-import com.cubemc.api.Game.kits.GameKit;
-import com.cubemc.api.Game.lobby.JoinAction;
-import com.cubemc.api.Game.maps.GameMap;
-import com.cubemc.api.Game.prevention.PreventionSet;
-import com.cubemc.api.Game.teams.GameTeam;
+import com.cubemc.api.game.CubeGame;
+import com.cubemc.api.game.GamePlugin;
+import com.cubemc.api.game.GameState;
+import com.cubemc.api.game.kits.GameKit;
+import com.cubemc.api.game.lobby.JoinAction;
+import com.cubemc.api.game.maps.GameMap;
+import com.cubemc.api.game.prevention.PreventionSet;
+import com.cubemc.api.game.teams.GameTeam;
+import com.cubemc.cubepvp.Commands.GameCommandManager;
 import com.cubemc.cubepvp.Executors.EndGame;
 import com.cubemc.cubepvp.Executors.StartGame;
 import com.cubemc.cubepvp.Kits.ArcherKit;
@@ -42,6 +43,9 @@ public class CubePVP extends JavaPlugin implements GamePlugin {
 
         //Initialize the game with the GameManager.
         CubeAPI.getGameManager().initializeGame(setupGame(), maps);
+
+        //Test shop command (JUST FOR TESTING LOL)
+        new GameCommandManager(this);
 
         //Listeners
         Bukkit.getPluginManager().registerEvents(new Join(), this);

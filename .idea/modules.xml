@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CubePVP/CubePVP.iml" filepath="$PROJECT_DIR$/CubePVP/CubePVP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CubeTargeted/CubeTargeted.iml" filepath="$PROJECT_DIR$/CubeTargeted/CubeTargeted.iml" />
     </modules>
   </component>
 </project>

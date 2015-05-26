@@ -1,0 +1,5 @@
+name: CubeTargeted
+version: 1.0
+author: WilliamTiger
+main: com.cubemc.targeted.Targeted
+depend: [CubeAPI]
