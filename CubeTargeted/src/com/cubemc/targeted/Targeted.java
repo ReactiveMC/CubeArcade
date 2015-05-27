@@ -11,6 +11,7 @@ import com.cubemc.api.game.teams.GameTeam;
 import com.cubemc.targeted.Abilities.AbilityManager;
 import com.cubemc.targeted.Executors.EndGame;
 import com.cubemc.targeted.Executors.StartGame;
+import com.cubemc.targeted.Listeners.Death;
 import com.cubemc.targeted.Listeners.Hunger;
 import com.cubemc.targeted.Listeners.Join;
 import org.bukkit.Bukkit;
@@ -59,6 +60,7 @@ public class Targeted extends JavaPlugin implements GamePlugin {
         //Bukkit.getPluginManager().registerEvents(new EndChecker(), this);
         Bukkit.getPluginManager().registerEvents(new Join(), this);
         Bukkit.getPluginManager().registerEvents(new Hunger(), this);
+        Bukkit.getPluginManager().registerEvents(new Death(), this);
 
         setupMapSpawns();
 
@@ -71,7 +73,7 @@ public class Targeted extends JavaPlugin implements GamePlugin {
         CubeGame game = new CubeGame("Targeted", "TGD", "§c", new PreventionSet());
 
         game.setState(GameState.WAITING);
-        game.setTicks(20);
+        game.setTicks(45);
         game.setDescription(Arrays.asList("Kill your assigned target.", "Receive their previous target.", "Run from your assassin."));
         game.setStartGameExecutor(new StartGame());
         game.setEndGameExecutor(new EndGame());
@@ -80,7 +82,7 @@ public class Targeted extends JavaPlugin implements GamePlugin {
         game.setJoinAction(JoinAction.SEND_TO_LOBBY);
         game.setKitsEnabled(false);
         game.setMaxPlayers(10);
-        game.setMinPlayers(1);
+        game.setMinPlayers(2);
 
         List<GameTeam> teams = new ArrayList<GameTeam>();
         {

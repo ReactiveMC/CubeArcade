@@ -5,6 +5,8 @@ import com.cubemc.api.CubeAPI;
 import com.cubemc.api.Utils.M;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Collection;
@@ -27,8 +29,22 @@ public class TargetManager extends Module {
         super("Target Manager", plugin);
     }
 
-    public void stealTargetFromPlayer(Player stealer, Player victim){
+    public boolean hasTarget(Player p){
+        if (targets.containsKey(p.getName())) return true;
+        return false;
+    }
 
+    public void stealTargetFromPlayer(Player stealer, Player victim){
+        if (hasTarget(victim)){
+            String nt = targets.get(victim.getName());
+            targets.remove(victim.getName());
+            targets.put(stealer.getName(), nt);
+            stealer.sendMessage(M.reg("You have acquired a new target - §c§l" + nt + "§7."));
+            stealer.setCompassTarget(Bukkit.getPlayer(nt).getLocation());
+        }else{
+            stealer.sendMessage(M.error("There is §lno target §cto steal."));
+            return;
+        }
     }
 
     public void givePlayerTarget(Player p){
@@ -47,7 +63,7 @@ public class TargetManager extends Module {
 
             if (possible.isEmpty()){
                 newtarget = "Empty";
-                return;
+                continue;
             }
 
             int i = r.nextInt((possible.size() - 1) - 0 + 1) + 0;
@@ -55,14 +71,14 @@ public class TargetManager extends Module {
 
             if ((alreadyTargets.contains(attempt)) || (p.getName().equalsIgnoreCase(attempt))){
                 possible.remove(attempt);
-                return; //Failure: Try again.
+                continue; //Failure: Try again.
             }
 
             if (targets.containsKey(attempt)){
                 if (targets.get(attempt).equalsIgnoreCase(p.getName())){
                     if (!(CubeAPI.getGameManager().getTeamManager().getTeam("Players").getMembers().size() == 2)){
                         //Failure: They would both have the same target in one go before the final 2 competitors.
-                        return;
+                        continue;
                     }
                 }
             }
@@ -71,12 +87,28 @@ public class TargetManager extends Module {
         }
 
         if (newtarget.equalsIgnoreCase("Empty")){
-            p.sendMessage(M.error("There are §lno §cpossible targets."));
+            p.sendMessage(M.error("There are §lno possible §ctargets."));
             return;
         }
 
         p.sendMessage(M.reg("You have acquired a new target - §c§l" + newtarget + "§7."));
         targets.put(p.getName(), newtarget);
         p.setCompassTarget(Bukkit.getPlayer(newtarget).getLocation());
+    }
+
+    @EventHandler
+    public void onDamage(EntityDamageByEntityEvent e){
+        if (!((e.getEntity() instanceof Player) && (e.getDamager() instanceof Player))) return;
+
+        Player p = (Player) e.getEntity();
+        Player d = (Player) e.getDamager();
+
+        if (targets.containsKey(d.getName())){
+            if (!(targets.get(d.getName()).equalsIgnoreCase(p.getName()))){
+                e.setCancelled(true);
+                d.sendMessage(M.reg("§c" + p.getName() + " §7is not your target."));
+                return;
+            }
+        }
     }
 }

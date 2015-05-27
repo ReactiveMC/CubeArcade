@@ -54,7 +54,12 @@ public class StartGame implements StartGameExecutor {
             TimedSprint.giveItem(p);
             SmokeBomb.giveItem(p);
             EMP.giveItem(p);
+            Targeted.getTargetManager().givePlayerTarget(p);
         }
+
+        CubeAPI.getGameManager().getGame().getSet().setCanPVE(true);
+        CubeAPI.getGameManager().getGame().getSet().setCanPVP(true);
+        CubeAPI.getGameManager().getGame().getSet().setCanPlayersTakeDamage(true);
     }
 
     public Location getNextSpawn(Location prev){
