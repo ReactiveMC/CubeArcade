@@ -34,6 +34,16 @@ public class TargetManager extends Module {
         return false;
     }
 
+    public Player getAttacker(Player p){
+        if (!(targets.containsValue(p.getName()))) return null;
+        for (String t : targets.keySet()){
+            if (targets.get(t).equalsIgnoreCase(p.getName())){
+                return Bukkit.getPlayer(t);
+            }
+        }
+        return null;
+    }
+
     public void stealTargetFromPlayer(Player stealer, Player victim){
         if (hasTarget(victim)){
             String nt = targets.get(victim.getName());

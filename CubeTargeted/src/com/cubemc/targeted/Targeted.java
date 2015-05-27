@@ -14,6 +14,7 @@ import com.cubemc.targeted.Executors.StartGame;
 import com.cubemc.targeted.Listeners.Death;
 import com.cubemc.targeted.Listeners.Hunger;
 import com.cubemc.targeted.Listeners.Join;
+import com.cubemc.targeted.Listeners.Leave;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -57,10 +58,11 @@ public class Targeted extends JavaPlugin implements GamePlugin {
 
         CubeAPI.getGameManager().initializeGame(setupGame(), maps);
 
-        //Bukkit.getPluginManager().registerEvents(new EndChecker(), this);
+        Bukkit.getPluginManager().registerEvents(new EndChecker(), this);
         Bukkit.getPluginManager().registerEvents(new Join(), this);
         Bukkit.getPluginManager().registerEvents(new Hunger(), this);
         Bukkit.getPluginManager().registerEvents(new Death(), this);
+        Bukkit.getPluginManager().registerEvents(new Leave(), this);
 
         setupMapSpawns();
 
@@ -87,7 +89,6 @@ public class Targeted extends JavaPlugin implements GamePlugin {
         List<GameTeam> teams = new ArrayList<GameTeam>();
         {
             GameTeam team = new GameTeam("Players", "§e");
-            team.setMaxSize(10);
             teams.add(team);
         }
         {
